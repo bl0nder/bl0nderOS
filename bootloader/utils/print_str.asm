@@ -8,13 +8,12 @@ print_str:
 
     print_char:
         mov al, [bx] ;al -> char to be printed 
-        int 0x10 ;BIOS interrupt for video services
-
-        inc bx ;inc bx to address of next character in string
-        
-        cmp byte[bx], 0 ;Check if current char is NULL char
+        cmp al, 0 ;Check if current char is NULL char
         je exit_print ;If yes, exit loop
-        jmp print_char ;Else, loop again
+
+        int 0x10 ;BIOS interrupt for video services
+        inc bx ;inc bx to address of next character in string
+        jmp print_char 
 
     exit_print:
         popa

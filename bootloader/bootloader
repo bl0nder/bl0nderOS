@@ -1,6 +1,6 @@
 all: run
 
-o.bin: test_print_hex.asm
+o.bin: bootloader.asm
 	nasm -i utils/ -f bin $< -o $@
 
 run: o.bin
