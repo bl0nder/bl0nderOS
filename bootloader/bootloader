@@ -1,0 +1,10 @@
+all: run
+
+o.bin: test_print_str.asm
+	nasm -i utils/ -f bin $< -o $@
+
+run: o.bin
+	qemu-system-x86_64 o.bin
+
+clean:
+	$(find . -name '*.bin' -type f -delete) *.bin 
