@@ -2,6 +2,7 @@
 ;Parameters:
 ;   bx -> starting ADDRESS of string to be printed (string MUST terminate with NULL char)
 ;   NOTE: bx is NOT the string itself
+[bits 16]
 print_str:
     pusha
     mov ah, 0x0e ;Print char in teletype mode

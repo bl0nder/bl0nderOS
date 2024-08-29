@@ -1,6 +1,9 @@
 ;Bootloader program
 ;Parameters:
 ;   NONE
+;TODO:
+;   Check & Enable A20 (even though Qemu already does it mp)
+;   Load kernel
 
 ;16-bit real mode
 [bits 16]

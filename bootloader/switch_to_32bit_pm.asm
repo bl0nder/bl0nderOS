@@ -31,5 +31,5 @@ protected_mode:
     ;Init stack pointers to address just above free space
     mov ebp, 0x90000
     mov esp, ebp
-    
+
     call prot_mode
