@@ -4,6 +4,8 @@
 ;Move some hex num to dx and call print_hex
 mov dx, [HEX]
 call print_hex
+mov dx, [ANOTHER_HEX]
+call print_hex
 
 jmp $ ;Indefinitely jump
 
@@ -14,6 +16,7 @@ jmp $ ;Indefinitely jump
 ;Data
 HEX: dw 0x1fe2
 SPACE: db " ", 0
+ANOTHER_HEX: dw 0x1234
 
 ;Padding + Magic number
 times 510-($-$$) db 0

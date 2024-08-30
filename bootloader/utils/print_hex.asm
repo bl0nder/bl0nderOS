@@ -1,7 +1,7 @@
 ;Function to print a hexadecimal address as a string
 ;Parameters:
 ;   dx -> Hex number to be printed
-
+[bits 16]
 print_hex:
     pusha
 

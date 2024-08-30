@@ -7,4 +7,4 @@ run: o.bin
 	qemu-system-x86_64 o.bin
 
 clean:
-	$(find . -name '*.bin' -type f -delete) *.bin 
+	rm -r *.bin *.o *.dis
