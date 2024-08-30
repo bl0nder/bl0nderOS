@@ -22,6 +22,9 @@ real_mode:
     call print_str
 
     ;Load kernel
+    mov bx, MSG_KERNEL_LOAD
+    call print_str
+    
     mov bx, KERNEL_OFFSET
     mov dl, [BOOT_DRIVE]
     mov dh, 15 ;Load 15 sectors after boot sector 
