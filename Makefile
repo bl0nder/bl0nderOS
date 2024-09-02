@@ -8,7 +8,7 @@ all: run
 %.o: %.asm
 	nasm $< -f elf -o $@
 
-%.o: %.c
+%.o: %.c ${HEADERS}
 	i686-elf-gcc -ffreestanding -c $< -o $@ 
 
 bootloader/bootloader.bin: bootloader/bootloader.asm
@@ -25,4 +25,6 @@ run: os_img
 	qemu-system-x86_64 -fda os_img.bin
 
 clean:
-	rm -rf *.bin *.o *.dis
+	rm -rf bootloader/*.bin bootloader/*.o bootloader/*.dis
+	rm -rf kernel/*.bin kernel/*.o kernel/*.dis
+	rm -rf drivers/*.bin drivers/*.o drivers/*.dis

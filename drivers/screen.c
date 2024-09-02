@@ -1,6 +1,6 @@
 #define VIDEO_ADDRESS 0xb8000;
-#define NUM_ROWS 25;
-#define NUM_COLS 80;
+#define NUM_ROWS 25
+#define NUM_COLS 80
 
 //Color definitions
 #define BLACK 0
@@ -27,10 +27,13 @@ unsigned int cursor_col = 0;
 //Defining buffer
 char* buffer = (char*) VIDEO_ADDRESS;
 
-void write_cell(int i, char c, unsigned char fg_col, unsigned char bg_col) {
-    buffer[i] = c;
-    buffer[i+1] = ((bg_col & 0x0f) << 4) | (fg_col & 0x0f);
+void write_char_to_cursor(int row, int col, unsigned char c, unsigned char bg_col, unsigned char fg_col) {
+    if (row < 0 || row >= NUM_ROWS || col < 0 || col >= NUM_COLS) return;
+    
+    int idx = (row*NUM_COLS + col)*2;
+    *(buffer + idx) = c;
+    *(buffer + idx + 1) = ((bg_col & 0x0f) << 4) | (fg_col & 0x0f);
 }
 void main() {
-    write_cell(0, 'X', BLACK, GREEN);
+    write_char_to_cursor(1, -100, 'O', RED, WHITE);
 }
