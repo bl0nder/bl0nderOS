@@ -7,7 +7,7 @@ mov bx, STRING2
 call print_str
 jmp $ ;Loop indefinitely to prevent BIOS from accessing random mem address after fn returns
 
-%include "print_str.asm"
+%include "../print_str.asm"
 
 ;Data
 STRING: db "Hello World!", 0x0a, 0

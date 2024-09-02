@@ -32,9 +32,9 @@ test_read_disk:
     jmp $
 
 ;Import
-%include "print_str.asm"
-%include "print_hex.asm"
-%include "read_disk.asm"
+%include "../print_str.asm"
+%include "../print_hex.asm"
+%include "../read_disk.asm"
 
 ;Data
 START_MSG: db "Trying to read disk...", 0x0a, 0x0d, 0

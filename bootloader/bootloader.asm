@@ -35,25 +35,22 @@ real_mode:
         jmp $
 
 ;Imports - 16 bit
-%include "utils/print_str.asm"
-%include "utils/print_hex.asm"
-%include "utils/read_disk.asm"
-%include "switch_to_32bit_pm.asm"
+%include "print_str.asm"
+%include "print_hex.asm"
+%include "read_disk.asm"
+%include "bootloader/switch_to_32bit_pm.asm"
 
 ;32-bit protected mode
 [bits 32]
 prot_mode:
-    mov ebx, MSG_PROT
-    call print_str_pm
-
     ;Go to address where kernel code is stored and start executing
     call KERNEL_OFFSET
 
     jmp $
 
 ;Imports - 32 bit
-%include "utils/print_str_pm.asm"
-%include "global_descriptor_table.asm"
+%include "print_str_pm.asm"
+%include "bootloader/global_descriptor_table.asm"
 
 ;Data
 MSG_REAL: db "16-bit real mode", 0xd, 0xa, 0

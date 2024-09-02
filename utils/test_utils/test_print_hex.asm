@@ -10,8 +10,8 @@ call print_hex
 jmp $ ;Indefinitely jump
 
 ;Import
-%include "print_str.asm"
-%include "print_hex.asm"
+%include "../print_str.asm"
+%include "../print_hex.asm"
 
 ;Data
 HEX: dw 0x1fe2
