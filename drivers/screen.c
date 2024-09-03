@@ -1,18 +1,19 @@
 #include "port_io.h"
 #include "screen.h"
 #include "../utils/mem_copy.h"
+#include "../utils/data_types.h"
 
 int get_cursor();
 void update_cursor(int cursor_offset);
 int get_row(int cursor_offset);
 int get_col(int cursor_offset);
-void print_char(unsigned char c, int row, int col, unsigned char bg_col, unsigned fg_col);
+void prs32_char(u8 c, int row, int col, u8 bg_col, u8 fg_col);
 int handle_scroll(int cursor_offset);
 
 /* Public kernel functions 
     - These functions have the "_k" suffix in their names
 */
-void print_at_k(char* str, int row, int col, unsigned char bg_col, unsigned fg_col) {
+void print_at_k(char* str, int row, int col, u8 bg_col, u8 fg_col) {
     
     if (row >= NUM_ROWS || col >= NUM_COLS) {
         char* error_msg = "ERROR";
@@ -32,7 +33,7 @@ void print_at_k(char* str, int row, int col, unsigned char bg_col, unsigned fg_c
     }
 }
 
-void print_k(char* str, unsigned char bg_col, unsigned char fg_col) {
+void print_k(char* str, u8 bg_col, u8 fg_col) {
     print_at_k(str, -1, -1, bg_col, fg_col);
 }
 
@@ -58,11 +59,11 @@ int get_cursor() {
     
     //Query cursor high byte and store it
     port_byte_out(PORT_QUERY, 14);
-    unsigned char cursor_high_byte = port_byte_in(PORT_DATA);
+    u8 cursor_high_byte = port_byte_in(PORT_DATA);
 
     //Query cursor low byte and store it 
     port_byte_out(PORT_QUERY, 15);
-    unsigned char cursor_low_byte = port_byte_in(PORT_DATA);
+    u8 cursor_low_byte = port_byte_in(PORT_DATA);
 
     //Compute cursor offset from BUFFER_ADDR
     int cursor_offset = ((cursor_high_byte << 8) | cursor_low_byte)*2;
@@ -71,8 +72,8 @@ int get_cursor() {
 
 void update_cursor(int cursor_offset) {
     cursor_offset /= 2;
-    unsigned char cursor_high_byte = cursor_offset >> 8;
-    unsigned char cursor_low_byte = cursor_offset & 0x00ff;
+    u8 cursor_high_byte = cursor_offset >> 8;
+    u8 cursor_low_byte = cursor_offset & 0x00ff;
 
     //Update high byte
     port_byte_out(PORT_QUERY, 14);
@@ -93,7 +94,7 @@ int get_col(int cursor_offset) {
     return num_chars_printed % NUM_COLS;
 }
 
-void print_char(unsigned char c, int row, int col, unsigned char bg_col, unsigned fg_col) {
+void print_char(u8 c, int row, int col, u8 bg_col, u8 fg_col) {
     int cursor_offset;
     if (row < 0 || col < 0 || row >= NUM_ROWS || col >= NUM_COLS) {
         cursor_offset = get_cursor();

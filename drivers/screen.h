@@ -1,6 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include "../utils/data_types.h"
+
 //Color definitions
 #define BLACK 0
 #define BLUE 1
@@ -26,8 +28,8 @@
 #define PORT_QUERY 0x03d4
 #define PORT_DATA 0x03d5
 
-void print_at_k(char* str, int row, int col, unsigned char bg_col, unsigned fg_col);
-void print_k(char* str, unsigned char bg_col, unsigned char fg_col);
+void print_at_k(char* str, int row, int col, u8 bg_col, u8 fg_col);
+void print_k(char* str, u8 bg_col, u8 fg_col);
 void clear_screen_k();
 
 #endif
