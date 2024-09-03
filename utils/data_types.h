@@ -1,12 +1,12 @@
 #ifndef DATA_TYPES_H
 #define DATA_TYPES_H
 
-typedef unsigned int u32;
-typedef unsigned short int u16;
-typedef unsigned char u8;
+typedef unsigned int u32_T;
+typedef unsigned short int u16_T;
+typedef unsigned char u8_T;
 
-typedef int s32;
-typedef short int s16;
-typedef char s8;
+typedef int s32_T;
+typedef short int s16_T;
+typedef char s8_T;
 
 #endif

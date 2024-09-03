@@ -7,13 +7,13 @@ int get_cursor();
 void update_cursor(int cursor_offset);
 int get_row(int cursor_offset);
 int get_col(int cursor_offset);
-void print_char(u8 c, int row, int col, u8 bg_col, u8 fg_col);
+void print_char(u8_T c, int row, int col, u8_T bg_col, u8_T fg_col);
 int handle_scroll(int cursor_offset);
 
 /* Public kernel functions 
     - These functions have the "_k" suffix in their names
 */
-void print_at_k(char* str, int row, int col, u8 bg_col, u8 fg_col) {
+void print_at_k(char* str, int row, int col, u8_T bg_col, u8_T fg_col) {
     
     if (row >= NUM_ROWS || col >= NUM_COLS) {
         char* error_msg = "ERROR";
@@ -33,7 +33,7 @@ void print_at_k(char* str, int row, int col, u8 bg_col, u8 fg_col) {
     }
 }
 
-void print_k(char* str, u8 bg_col, u8 fg_col) {
+void print_k(char* str, u8_T bg_col, u8_T fg_col) {
     print_at_k(str, -1, -1, bg_col, fg_col);
 }
 
@@ -59,11 +59,11 @@ int get_cursor() {
     
     //Query cursor high byte and store it
     port_byte_out(PORT_QUERY, 14);
-    u8 cursor_high_byte = port_byte_in(PORT_DATA);
+    u8_T cursor_high_byte = port_byte_in(PORT_DATA);
 
     //Query cursor low byte and store it 
     port_byte_out(PORT_QUERY, 15);
-    u8 cursor_low_byte = port_byte_in(PORT_DATA);
+    u8_T cursor_low_byte = port_byte_in(PORT_DATA);
 
     //Compute cursor offset from BUFFER_ADDR
     int cursor_offset = ((cursor_high_byte << 8) | cursor_low_byte)*2;
@@ -72,8 +72,8 @@ int get_cursor() {
 
 void update_cursor(int cursor_offset) {
     cursor_offset /= 2;
-    u8 cursor_high_byte = cursor_offset >> 8;
-    u8 cursor_low_byte = cursor_offset & 0x00ff;
+    u8_T cursor_high_byte = cursor_offset >> 8;
+    u8_T cursor_low_byte = cursor_offset & 0x00ff;
 
     //Update high byte
     port_byte_out(PORT_QUERY, 14);
@@ -94,7 +94,7 @@ int get_col(int cursor_offset) {
     return num_chars_printed % NUM_COLS;
 }
 
-void print_char(u8 c, int row, int col, u8 bg_col, u8 fg_col) {
+void print_char(u8_T c, int row, int col, u8_T bg_col, u8_T fg_col) {
     int cursor_offset;
     if (row < 0 || col < 0 || row >= NUM_ROWS || col >= NUM_COLS) {
         cursor_offset = get_cursor();
