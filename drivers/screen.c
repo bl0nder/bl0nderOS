@@ -54,8 +54,6 @@ void clear_screen_k() {
 
 
 //Getting cursor position
-//Store 16-bit cursor pos in PORT_QUERY
-//Load cursor pos from PORT_WRITE+1 = PORT_DATA
 int get_cursor() {
     
     //Query cursor high byte and store it
@@ -126,8 +124,6 @@ void print_char(unsigned char c, int row, int col, unsigned char bg_col, unsigne
         *((char*) BUFFER_ADDR + cursor_offset + 1) = ((bg_col << 4) & 0xf0) | (fg_col & 0xf);
         cursor_offset += 2;
     }
-
-    // cursor_offset = handle_scroll(cursor_offset);
 
     //Update cursor position
     update_cursor(cursor_offset);
