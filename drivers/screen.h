@@ -1,3 +1,6 @@
+#ifndef SCREEN_H
+#define SCREEN_H
+
 //Color definitions
 #define BLACK 0
 #define BLUE 1
@@ -26,3 +29,5 @@
 void print_at_k(char* str, int row, int col, unsigned char bg_col, unsigned fg_col);
 void print_k(char* str, unsigned char bg_col, unsigned char fg_col);
 void clear_screen_k();
+
+#endif
