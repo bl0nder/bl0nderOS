@@ -7,7 +7,7 @@ int get_cursor();
 void update_cursor(int cursor_offset);
 int get_row(int cursor_offset);
 int get_col(int cursor_offset);
-void prs32_char(u8 c, int row, int col, u8 bg_col, u8 fg_col);
+void print_char(u8 c, int row, int col, u8 bg_col, u8 fg_col);
 int handle_scroll(int cursor_offset);
 
 /* Public kernel functions 
