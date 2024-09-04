@@ -4,6 +4,7 @@
 #include "utils/data_types.h"
 
 #define NUM_IDT_ENTRIES 256
+#define KERNEL_CS 0x08
 
 //Struct for entry in IDT
 typedef struct { 
@@ -20,7 +21,7 @@ typedef struct {
     u32_T offset;
 } __attribute__((packed)) idtr_T;
 
-//Create IDT and align to 16-byte boundary
-static idt_entry_T idt[NUM_IDT_ENTRIES] __attribute__((aligned(0x10)));   
-static idtr_T idtr;
+//Create IDT & IDT Register and align to 16-byte boundary
+idt_entry_T idt[NUM_IDT_ENTRIES] __attribute__((aligned(0x10)));   
+idtr_T idtr;
 #endif
