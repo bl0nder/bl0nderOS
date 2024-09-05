@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c utils/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h utils/*.h)
+C_SOURCES = $(wildcard kernel/*.c cpu/*.c drivers/*.c utils/*.c)
+HEADERS = $(wildcard kernel/*.h cpu/*.h drivers/*.h utils/*.h)
 
 OBJ = ${C_SOURCES:.c=.o}
 
@@ -29,3 +29,4 @@ clean:
 	rm -rf bootloader/*.bin bootloader/*.o bootloader/*.dis
 	rm -rf kernel/*.bin kernel/*.o kernel/*.dis
 	rm -rf drivers/*.bin drivers/*.o drivers/*.dis
+	rm -rf cpu/*.bin cpu/*.o cpu/*.dis
