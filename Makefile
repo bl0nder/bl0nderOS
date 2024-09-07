@@ -1,7 +1,7 @@
 C_SOURCES = $(wildcard kernel/*.c cpu/*.c drivers/*.c utils/*.c)
 HEADERS = $(wildcard kernel/*.h cpu/*.h drivers/*.h utils/*.h)
 
-OBJ = ${C_SOURCES:.c=.o}
+OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
 all: run
 

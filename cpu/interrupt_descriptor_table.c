@@ -19,6 +19,5 @@ void idt_init() {
     idtr.offset = (u32_T) &idt;
 
     //Load IDT & Enable interrupts (sti)
-    __asm__ __volatile__("lidt %0" : : "m" (idtr));
-    // __asm__ __volatile__("sti");    
+    __asm__ __volatile__("lidt (%0)" : : "m" (idtr));
 }
